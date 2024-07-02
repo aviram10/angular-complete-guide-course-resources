@@ -1,0 +1,15 @@
+<app-header />
+<main>
+    <ul>
+        @for( user of users(); track user.id ){
+            <li>
+                <app-user [user]="user" (select)="onSelectUser(user.id)"/>
+            </li>            
+        }
+    </ul>
+    @if(userId()){
+    <app-tasks [userId]="userId()" />
+    }@else {
+        <h2>choose user</h2>
+    }
+</main>

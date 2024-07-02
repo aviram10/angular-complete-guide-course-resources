@@ -1,0 +1,22 @@
+<section id="tasks">
+    @if(form()){
+        <h2>form</h2>
+    }
+    @if(user() ){
+        <header>
+            {{user()?.name}}'s tasks
+            <menu>
+                <button (click)="onAddTask()">Add Task</button>
+            </menu>
+        </header>
+        @if(tasks().length > 0){
+            <ul>
+                @for(task of tasks(); track task.id){
+                    <app-task [task]="task" (select)="onCompleteTask($event)" />       
+                 }
+            </ul>
+        } @else{ <h2>No Tasks!!</h2> }        
+    }@else {
+        <h2> No Valid User</h2>
+    }
+</section>
